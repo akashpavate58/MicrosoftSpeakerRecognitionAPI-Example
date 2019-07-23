@@ -35,7 +35,6 @@ namespace SpeakerRecognitionAPI
 
             try
             {
-
                 var profiles = await client.FetchVerificationProfiles();
                 list_profiles.Items.AddRange(
                     profiles.Select(p => new ListViewItem(p.VerificationProfileId)).ToArray());
