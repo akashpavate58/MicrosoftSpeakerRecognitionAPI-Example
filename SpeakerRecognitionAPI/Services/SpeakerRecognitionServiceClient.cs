@@ -2,6 +2,7 @@
 using SpeakerRecognitionAPI.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -34,6 +35,15 @@ namespace SpeakerRecognitionAPI.Services
             var content = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<IEnumerable<VerificationProfile>>(content);
         }
+
+        public async Task<IEnumerable<VerificationProfile>> DeleteVerificationProfile(string profileId)
+        {
+            var client = HTTP_CLIENT;
+            var response = await client.DeleteAsync($"{_baseUrl}/verificationProfiles/{profileId}");
+            response.EnsureSuccessStatusCode();
+            return await FetchVerificationProfiles();
+        }
+
         public async Task<IEnumerable<VerificationPhrase>> FetchVerificationPhrases()
         {
             var client = HTTP_CLIENT;
@@ -56,6 +66,34 @@ namespace SpeakerRecognitionAPI.Services
             response.EnsureSuccessStatusCode();
             return await FetchVerificationProfiles();
         }
+
+        public async Task<string> BeginTraining(string profileId, Stream stream)
+        {
+            var client = HTTP_CLIENT;
+            var url = $"{_baseUrl}/verificationProfiles/{profileId}/enroll";
+
+            var response = await client.PostAsync(
+                url, 
+                new StreamContent(stream));
+
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            return content;
+        }
+
+        public async Task<bool> Verify(string profileId, Stream stream)
+        {
+            var client = HTTP_CLIENT;
+            var url = $"{_baseUrl}/verify?verificationProfileId={profileId}";
+
+            var response = await client.PostAsync(
+                url,
+                new StreamContent(stream));
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            return (JsonConvert.DeserializeObject<VerificationResponse>(content)).IsValid;
+        }
+
 
         private HttpClient HTTP_CLIENT
         {

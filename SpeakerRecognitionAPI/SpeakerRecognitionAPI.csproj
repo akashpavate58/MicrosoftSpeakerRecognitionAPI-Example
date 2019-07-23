@@ -60,6 +60,8 @@
     </Compile>
     <Compile Include="Models\VerificationPhrases.cs" />
     <Compile Include="Models\VerificationProfiles.cs" />
+    <Compile Include="Models\VerificationResponse.cs" />
+    <Compile Include="Services\WavAudioRecorder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SpeakerRecognitionServiceClient.cs" />

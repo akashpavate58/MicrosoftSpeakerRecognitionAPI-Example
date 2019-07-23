@@ -46,8 +46,13 @@
             this.list_phrases = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lbl_selectedProfileId = new System.Windows.Forms.Label();
+            this.btn_test_record = new System.Windows.Forms.Button();
+            this.btn_test_stop = new System.Windows.Forms.Button();
+            this.btn_recognize = new System.Windows.Forms.Button();
+            this.btn_deleteProfile = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_apiKey
@@ -126,24 +131,29 @@
             this.btn_record_train.TabIndex = 7;
             this.btn_record_train.Text = "Record";
             this.btn_record_train.UseVisualStyleBackColor = true;
+            this.btn_record_train.Click += new System.EventHandler(this.Btn_record_train_Click);
             // 
             // btn_stop_train
             // 
+            this.btn_stop_train.Enabled = false;
             this.btn_stop_train.Location = new System.Drawing.Point(137, 63);
             this.btn_stop_train.Name = "btn_stop_train";
             this.btn_stop_train.Size = new System.Drawing.Size(75, 23);
             this.btn_stop_train.TabIndex = 8;
             this.btn_stop_train.Text = "Stop";
             this.btn_stop_train.UseVisualStyleBackColor = true;
+            this.btn_stop_train.Click += new System.EventHandler(this.Btn_stop_train_Click);
             // 
             // btn_train
             // 
+            this.btn_train.Enabled = false;
             this.btn_train.Location = new System.Drawing.Point(245, 63);
             this.btn_train.Name = "btn_train";
             this.btn_train.Size = new System.Drawing.Size(75, 23);
             this.btn_train.TabIndex = 9;
             this.btn_train.Text = "Train";
             this.btn_train.UseVisualStyleBackColor = true;
+            this.btn_train.Click += new System.EventHandler(this.Btn_train_Click);
             // 
             // tabControl1
             // 
@@ -210,6 +220,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btn_recognize);
+            this.tabPage2.Controls.Add(this.btn_test_stop);
+            this.tabPage2.Controls.Add(this.btn_test_record);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -228,11 +241,54 @@
             this.lbl_selectedProfileId.Text = "label5";
             this.lbl_selectedProfileId.Visible = false;
             // 
+            // btn_test_record
+            // 
+            this.btn_test_record.Location = new System.Drawing.Point(95, 54);
+            this.btn_test_record.Name = "btn_test_record";
+            this.btn_test_record.Size = new System.Drawing.Size(75, 23);
+            this.btn_test_record.TabIndex = 11;
+            this.btn_test_record.Text = "Record";
+            this.btn_test_record.UseVisualStyleBackColor = true;
+            this.btn_test_record.Click += new System.EventHandler(this.Btn_test_record_Click);
+            // 
+            // btn_test_stop
+            // 
+            this.btn_test_stop.Enabled = false;
+            this.btn_test_stop.Location = new System.Drawing.Point(176, 54);
+            this.btn_test_stop.Name = "btn_test_stop";
+            this.btn_test_stop.Size = new System.Drawing.Size(75, 23);
+            this.btn_test_stop.TabIndex = 12;
+            this.btn_test_stop.Text = "Stop";
+            this.btn_test_stop.UseVisualStyleBackColor = true;
+            this.btn_test_stop.Click += new System.EventHandler(this.Btn_test_stop_Click);
+            // 
+            // btn_recognize
+            // 
+            this.btn_recognize.Enabled = false;
+            this.btn_recognize.Location = new System.Drawing.Point(95, 83);
+            this.btn_recognize.Name = "btn_recognize";
+            this.btn_recognize.Size = new System.Drawing.Size(156, 23);
+            this.btn_recognize.TabIndex = 13;
+            this.btn_recognize.Text = "Recognize";
+            this.btn_recognize.UseVisualStyleBackColor = true;
+            this.btn_recognize.Click += new System.EventHandler(this.Btn_recognize_Click);
+            // 
+            // btn_deleteProfile
+            // 
+            this.btn_deleteProfile.Location = new System.Drawing.Point(33, 321);
+            this.btn_deleteProfile.Name = "btn_deleteProfile";
+            this.btn_deleteProfile.Size = new System.Drawing.Size(106, 23);
+            this.btn_deleteProfile.TabIndex = 14;
+            this.btn_deleteProfile.Text = "Delete";
+            this.btn_deleteProfile.UseVisualStyleBackColor = true;
+            this.btn_deleteProfile.Click += new System.EventHandler(this.Btn_deleteProfile_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(665, 384);
+            this.Controls.Add(this.btn_deleteProfile);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btn_addProfileId);
             this.Controls.Add(this.btn_reset);
@@ -246,6 +302,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,6 +328,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox text_Log;
         private System.Windows.Forms.Label lbl_selectedProfileId;
+        private System.Windows.Forms.Button btn_recognize;
+        private System.Windows.Forms.Button btn_test_stop;
+        private System.Windows.Forms.Button btn_test_record;
+        private System.Windows.Forms.Button btn_deleteProfile;
     }
 }
 
